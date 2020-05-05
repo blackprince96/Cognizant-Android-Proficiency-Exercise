@@ -3,8 +3,10 @@
     <dimen name="margin_list">8dp</dimen>
     <dimen name="margin_layout">16dp</dimen>
     <dimen name="margin_top">8dp</dimen>
-    <dimen name="title_text_size">18sp</dimen>
-    <dimen name="cardview_elevation">4dp</dimen>
-    <dimen name="cardview_radius">2dp</dimen>
-    <dimen name="image_margin">4dp</dimen>
+    <dimen name="text_size_title">18sp</dimen>
+    <dimen name="elevation">8dp</dimen>
+    <dimen name="radius">10dp</dimen>
+    <dimen name="margin_image">4dp</dimen>
+    <dimen name="margin_cardview">4dp</dimen>
+    <dimen name="text_size_description">13sp</dimen>
 </resources>

@@ -43,7 +43,7 @@ public class ServiceGenerator {
     private ServiceGenerator() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiConstants.BASE_URL)
-                .client(client)
+//                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         dropboxAPI = retrofit.create(DropboxAPI.class);

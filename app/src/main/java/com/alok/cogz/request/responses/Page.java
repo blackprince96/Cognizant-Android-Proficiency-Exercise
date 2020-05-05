@@ -1,5 +1,4 @@
 package com.alok.cogz.request.responses;
-
 import com.alok.cogz.data.Row;
 import com.google.gson.annotations.SerializedName;
 
