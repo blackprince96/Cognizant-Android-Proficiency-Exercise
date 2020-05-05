@@ -1,0 +1,2 @@
+rootProject.name='Cognizant-Android-Proficiency-Exercise'
+include ':app'
