@@ -62,15 +62,17 @@ public class PageAdapter extends RecyclerView.Adapter<PageAdapter.RowViewHolder>
         }
 
         void bind(Row row) {
-            if (!TextUtils.isEmpty(row.getTitle())) {
-                tvTitle.setText(row.getTitle());
-            } else tvTitle.setText("Title...");
+            for (int i = 0; i <= dataList.size(); i++) {
+                if (!TextUtils.isEmpty(row.getTitle())) {
+                    tvTitle.setText(row.getTitle());
+                } else tvTitle.setText("Title...");
 
-            if (!TextUtils.isEmpty(row.getDescription())) {
-                tvDescription.setText(row.getDescription());
-            } else tvDescription.setText("description...");
+                if (!TextUtils.isEmpty(row.getDescription())) {
+                    tvDescription.setText(row.getDescription());
+                } else tvDescription.setText("description...");
 
-            Glide.with(itemView.getContext()).load(row.getImageHref()).placeholder(R.drawable.ic_launcher_background).into(ivPoster);
+                Glide.with(itemView.getContext()).load(row.getImageHref()).placeholder(R.drawable.ic_launcher_background).into(ivPoster);
+            }
         }
     }
 }

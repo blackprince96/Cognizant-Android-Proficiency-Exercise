@@ -8,5 +8,5 @@
     <dimen name="radius">10dp</dimen>
     <dimen name="margin_image">4dp</dimen>
     <dimen name="margin_cardview">4dp</dimen>
-    <dimen name="text_size_description">13sp</dimen>
+    <dimen name="text_size_description">14sp</dimen>
 </resources>

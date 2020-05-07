@@ -1,39 +1,36 @@
 package com.alok.cogz.viewmodels;
 
-import android.util.Log;
-
-import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
-import com.alok.cogz.request.ServiceGenerator;
+import com.alok.cogz.repository.PageRepository;
 import com.alok.cogz.request.responses.Page;
+import com.alok.cogz.constants.LoadingStatus;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+public class PageViewModel extends ViewModel {
 
-public class PageViewModel extends ViewModel implements Callback<Page> {
+    private PageRepository pageRepository;
 
     private MutableLiveData<Page> pageLiveData = new MutableLiveData<>();
 
-    public void setPageDataObserver(LifecycleOwner owner, Observer<Page> observer) {
-        pageLiveData.observe(owner, observer);
+    PageViewModel(PageRepository repository) {
+        this.pageRepository = repository;
     }
 
-    public void fetchRemoteData() {
-        ServiceGenerator.getInstance().getDropboxApi().getPageData().enqueue(this);
+    public LiveData<Page> getPageLiveData() {
+        return pageRepository.getPageLiveData();
     }
 
-    @Override
-    public void onResponse(Call<Page> call, Response<Page> response) {
-
-        pageLiveData.setValue(response.body());
+    public void fetchData() {
+        pageRepository.fetchData(false);
     }
 
-    @Override
-    public void onFailure(Call<Page> call, Throwable t) {
-        Log.i("ViewModel", "onFailure error " + t.getMessage());
+    public LiveData<LoadingStatus> getDataLoadingStatusLiveData() {
+        return pageRepository.getDataLoadingStatusLiveData();
+    }
+
+    public void refresh() {
+        pageRepository.fetchData(true);
     }
 }
