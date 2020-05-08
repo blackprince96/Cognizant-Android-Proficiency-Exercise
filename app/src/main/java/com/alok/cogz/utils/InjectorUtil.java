@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.alok.cogz.db.DummyPageDao;
 import com.alok.cogz.db.DummyPageDatabase;
-import com.alok.cogz.repository.PageRepository;
+import com.alok.cogz.repository.PageRepositoryImpl;
 import com.alok.cogz.request.DropboxAPI;
 import com.alok.cogz.request.ServiceGenerator;
 import com.alok.cogz.viewmodels.PageViewModelFactory;
@@ -30,7 +30,7 @@ public class InjectorUtil {
     public PageViewModelFactory providePageViewModelFactory() {
         DropboxAPI apiService = ServiceGenerator.getInstance().getDropboxApi();
         DummyPageDao pageDao = DummyPageDatabase.getInstance().getDummyPageDao();
-        return new PageViewModelFactory(PageRepository.getInstance(context, apiService, pageDao));
+        return new PageViewModelFactory(PageRepositoryImpl.getInstance(context, apiService, pageDao));
     }
 }
 
