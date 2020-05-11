@@ -4,13 +4,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.matcher.RootMatchers;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
 
+import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
+import java.util.regex.Matcher;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -27,17 +31,21 @@ public class MainActivityTest {
     }
 
     @Test
-    public void loadPageTest() throws Exception {
-        Espresso.onView(withId(R.id.list_view));
-        if (getRVcount() > 0) {
-            Espresso.onView(ViewMatchers.withId(R.id.list_view)).perform(ViewActions.swipeDown());
-        }
-
+    public void pageClick(){
+        onView(ViewMatchers.withId(R.id.list_view))
+                .inRoot(RootMatchers.withDecorView(Matchers.is(activityActivityTestRule.getActivity().getWindow().getDecorView())))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
     }
 
-    private int getRVcount() {
+    @Test
+    public void scrollPageTest() throws Exception {
         RecyclerView recyclerView = activityActivityTestRule.getActivity().findViewById(R.id.list_view);
-        return recyclerView.getAdapter().getItemCount();
+        int itemCount = recyclerView.getAdapter().getItemCount();
+
+          onView(ViewMatchers.withId(R.id.list_view))
+                  .inRoot(RootMatchers.withDecorView(Matchers.is(activityActivityTestRule.getActivity().getWindow().getDecorView())))
+                  .perform(RecyclerViewActions.scrollToPosition(itemCount-1));
+
     }
 
     @After
