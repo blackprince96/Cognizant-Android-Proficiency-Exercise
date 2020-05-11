@@ -31,10 +31,10 @@ public class MainActivityTest {
     }
 
     @Test
-    public void pageClick(){
-        onView(ViewMatchers.withId(R.id.list_view))
-                .inRoot(RootMatchers.withDecorView(Matchers.is(activityActivityTestRule.getActivity().getWindow().getDecorView())))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+    public void getItemCount() {
+        RecyclerView recyclerView = activityActivityTestRule.getActivity().findViewById(R.id.list_view);
+        int itemCount = recyclerView.getAdapter().getItemCount();
+        Espresso.onView(withId(R.id.list_view)).perform(RecyclerViewActions.scrollToPosition(itemCount - 1));
     }
 
     @Test
@@ -42,9 +42,9 @@ public class MainActivityTest {
         RecyclerView recyclerView = activityActivityTestRule.getActivity().findViewById(R.id.list_view);
         int itemCount = recyclerView.getAdapter().getItemCount();
 
-          onView(ViewMatchers.withId(R.id.list_view))
-                  .inRoot(RootMatchers.withDecorView(Matchers.is(activityActivityTestRule.getActivity().getWindow().getDecorView())))
-                  .perform(RecyclerViewActions.scrollToPosition(itemCount-1));
+        onView(ViewMatchers.withId(R.id.list_view))
+                .inRoot(RootMatchers.withDecorView(Matchers.is(activityActivityTestRule.getActivity().getWindow().getDecorView())))
+                .perform(RecyclerViewActions.scrollToPosition(itemCount - 1));
 
     }
 
